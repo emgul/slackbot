@@ -93,7 +93,7 @@ if(isset($cmText)){
 		}*/
 		echo '
 {
-    "response_type": "ephemeral",
+    "response_type": "in_channel",
     "text": "In list:",
     "attachments": [
         {
