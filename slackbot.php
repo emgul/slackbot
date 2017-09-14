@@ -36,6 +36,8 @@ if(isset($cmText)){
 	    
 	    $cmText = substr($cmText, strlen('add '));
 
+	    $cmText = trim($cmText);
+	    
 	    if(!empty($cmText)){
 	    	$mysqli = new mysqli("$host", "$user", "$pass", "$database");
 
