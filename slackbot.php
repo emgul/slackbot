@@ -7,8 +7,8 @@ $cmText = filter_input(INPUT_POST, "text", FILTER_SANITIZE_SPECIAL_CHARS);
 //echo $cmText;
 //$cmText = $_POST["text"];
 
-$line1 = 'Line 1';
-$line2 = 'Line 2';
+//$line1 = 'Line 1';
+//$line2 = 'Line 2';
 /*$i = 1;
 while ($i <= 10) {
 	'\n'.$line1.
@@ -37,10 +37,6 @@ if(isset($cmText)){
 	    $cmText = substr($cmText, strlen('add '));
 
 	    if(!empty($cmText)){
-	    	http_response_code(200);
-	    	echo json_encode("Added: " . $cmText, JSON_UNESCAPED_UNICODE);
-
-
 	    	$mysqli = new mysqli("$host", "$user", "$pass", "$database");
 
 			$fråga = "test";
@@ -71,6 +67,8 @@ if(isset($cmText)){
 
 		    $mysqli->close();
 
+		    http_response_code(200);
+	    	echo json_encode("Added: " . $cmText, JSON_UNESCAPED_UNICODE);
 
 		}
 		else{
@@ -92,38 +90,38 @@ if(isset($cmText)){
 			$i = $i + 1;
 		}*/
 		echo '
-{
-    "response_type": "in_channel",
-    "text": "In list:",
-    "attachments": [
-        {
-            "text":"';
+			{
+			    "response_type": "in_channel",
+			    "text": "In list:",
+			    "attachments": [
+			        {
+			            "text":"';
 
-            	$mysqli = new mysqli("$host", "$user", "$pass", "$database");
+			            	$mysqli = new mysqli("$host", "$user", "$pass", "$database");
 
-            	if (!$mysqli->set_charset("utf8")) {
-				    echo "Error loading character set utf8: " . $mysqli->error;
-				    exit();
-				}
+			            	if (!$mysqli->set_charset("utf8")) {
+							    echo "Error loading character set utf8: " . $mysqli->error;
+							    exit();
+							}
 
-				$result = $mysqli->query("SELECT * FROM questions");
-				if(mysqli_num_rows($result) > 0)
-				{
-				    while ($row = $result->fetch_assoc()) {
-				        echo '\n' . $row["fraga"];
-				    }
-				}
-				else{
-				    echo "List is empty";
-				}
+							$result = $mysqli->query("SELECT * FROM questions");
+							if(mysqli_num_rows($result) > 0)
+							{
+							    while ($row = $result->fetch_assoc()) {
+							        echo '\n' . $row["fraga"];
+							    }
+							}
+							else{
+							    echo "List is empty";
+							}
 
-				$mysqli->close();
+							$mysqli->close();
 
-            echo'"
-        }
-    ]
-} 
-';
+			            echo'"
+			        }
+			    ]
+			} 
+			';
     	
 
 
