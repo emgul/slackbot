@@ -54,7 +54,7 @@ if(isset($cmText)){
 			    exit();
 			}
 
-		    if (!($stmt = $mysqli->prepare("INSERT into frågor(fraga, typ) values (?,?)"))) {
+		    if (!($stmt = $mysqli->prepare("INSERT into questions(fraga, typ) values (?,?)"))) {
 				echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 			}
 
@@ -98,11 +98,20 @@ if(isset($cmText)){
         {
             "text":"';
 
-            	$i = 1;
-				while ($i <= 10) { 
-					echo '\n'.$i; 
-					$i = $i + 1; 
+            	$mysqli = new mysqli("$host", "$user", "$pass", "$database");
+
+				$result = $mysqli->query("SELECT * FROM questions");
+				if(mysqli_num_rows($result) > 0)
+				{
+				    while ($row = $result->fetch_assoc()) {
+				        echo '\n'.$row["fraga"];
+				    }
 				}
+				else{
+				    echo "List is empty";
+				}
+
+				$mysqli->close();
 
             echo'"
         }
