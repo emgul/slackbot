@@ -1,6 +1,6 @@
 <?php
 
-require 'logins.php';
+require '../../logins.php';
 
 
 $cmText = filter_input(INPUT_POST, "text", FILTER_SANITIZE_SPECIAL_CHARS);
