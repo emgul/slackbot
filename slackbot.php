@@ -4,6 +4,7 @@ require '../../logins.php';
 
 
 $cmText = filter_input(INPUT_POST, "text", FILTER_SANITIZE_SPECIAL_CHARS);
+//echo $cmText;
 //$cmText = $_POST["text"];
 
 $line1 = 'Line 1';
@@ -100,11 +101,16 @@ if(isset($cmText)){
 
             	$mysqli = new mysqli("$host", "$user", "$pass", "$database");
 
+            	if (!$mysqli->set_charset("utf8")) {
+				    echo "Error loading character set utf8: " . $mysqli->error;
+				    exit();
+				}
+
 				$result = $mysqli->query("SELECT * FROM questions");
 				if(mysqli_num_rows($result) > 0)
 				{
 				    while ($row = $result->fetch_assoc()) {
-				        echo '\n'.$row["fraga"];
+				        echo '\n' . $row["fraga"];
 				    }
 				}
 				else{
