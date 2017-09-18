@@ -112,7 +112,7 @@ if(isset($cmText)){
 				if(mysqli_num_rows($result) > 0)
 				{
 				    while ($row = $result->fetch_assoc()) {
-				        echo '\n' . $row["fraga"] . ' Laddes till: ' . $row["tid"];
+				        echo '\n' . $row["fraga"] . ' Laddes till: ' . $row["tid"] . '\n';
                         
 				    }
 				}
