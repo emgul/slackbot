@@ -45,6 +45,8 @@ if(isset($cmText)){
 
 			$fråga = "test";
 			$typ = "";
+            
+
 
 		    $filtered = $cmText;
 		    //echo $cmText;
@@ -110,7 +112,8 @@ if(isset($cmText)){
 				if(mysqli_num_rows($result) > 0)
 				{
 				    while ($row = $result->fetch_assoc()) {
-				        echo '\n' . $row["fraga"];
+				        echo '\n' . $row["fraga"] . ' Laddes till: ' . $row["tid"];
+                        
 				    }
 				}
 				else{
@@ -164,5 +167,6 @@ else{
 	header('Content-type:application/json;charset=utf-8');
 	echo json_encode("Invalid syntax", JSON_UNESCAPED_UNICODE);
 }
+
 
 ?>
