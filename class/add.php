@@ -51,7 +51,7 @@ if(!empty($split_text)){
 		echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 	}
 
-	if (!$stmt->bind_param("si", $filtered, $typ)) {
+	if (!$stmt->bind_param("ss", $filtered, $typ)) {
 		echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 	}
 
