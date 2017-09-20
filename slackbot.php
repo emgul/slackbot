@@ -27,10 +27,15 @@ if(isset($cmText)){
 		case 'list':
 			require 'class/list.php';
 			break;
+            
+        case 'answer':
+            require 'class/svar.php';
+            break;
 
 		case 'clear':
 			echo json_encode("The clear command is under construction", JSON_UNESCAPED_UNICODE);
 			break;
+            
 		
 		default:
 			echo json_encode("Invalid command", JSON_UNESCAPED_UNICODE);
