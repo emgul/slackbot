@@ -35,7 +35,10 @@ if(isset($cmText)){
 		case 'remove':
             require 'class/remove.php';
             break;
-            
+        
+        case 'help':
+            require 'class/help.php';
+            break;    
 		
 		default:
 			echo json_encode("Invalid command", JSON_UNESCAPED_UNICODE);
