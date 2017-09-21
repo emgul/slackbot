@@ -19,7 +19,7 @@ echo '
 				if(mysqli_num_rows($result) > 0)
 				{
 				    while ($row = $result->fetch_assoc()) {
-				        echo '\n' . $row["fraga"] . ' Added: ' . $row["tid"] . ' Type: ' . $row["typ"] . 'Med id ' .$row["id"].'\n';
+				        echo '\n' . $row["fraga"] . ' Added: ' . $row["tid"] . ' Type: ' . $row["typ"] . ' Id: ' .$row["id"].'\n';
 				    }
 				}
 				else{
