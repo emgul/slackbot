@@ -10,13 +10,21 @@ $split_id = $splits[2];
 $split_answer = trim($split_answer);
 $split_id = trim($split_id);
 
-//echo $splits[2];
+$mysqli = new mysqli("$host", "$user", "$pass", "$database");
 
-//echo $splits[1];
-
-if(!empty($split_text)){
-   	$mysqli = new mysqli("$host", "$user", "$pass", "$database");
+$ids_array = array();
+$result = mysqli_query($mysqli, "SELECT id FROM questions");
+while($row = mysqli_fetch_array($result))   {
+$ids_array[] = $row['id'];
+}
     
+$ids_length=count($ids_array);
+
+
+if(in_array($split_id , $ids_array)){
+
+    if(!empty($split_text)){
+
     
     if (!$mysqli->set_charset("utf8")) {
 	    echo "Error loading character set utf8: " . $mysqli->error;
@@ -36,11 +44,21 @@ if(!empty($split_text)){
 	if (!$stmt->execute()) {
 	    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 	}
-
+    
     $mysqli->close();
+    
     
     http_response_code(200);
    	echo json_encode("Added: " . $split_answer . " as an answer", JSON_UNESCAPED_UNICODE);
+    }
+}
+elseif($split_id == NULL) {
+    http_response_code(200);
+   	echo json_encode("Du skrev inte in ett id skriv kommandot på detta viset /q answer :: [svar] :: [id]", JSON_UNESCAPED_UNICODE);
+}
+else{
+    http_response_code(200);
+   	echo json_encode("Id: " . $split_id . " existerar inte", JSON_UNESCAPED_UNICODE);
 }
     
     
