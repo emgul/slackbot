@@ -1,6 +1,9 @@
 <?php
 	    
-if(!empty($split_text)){
+if(!empty($split_text) && isset($_POST["user_id"])){
+
+	$userId = filter_input(INPUT_POST, "user_id", FILTER_SANITIZE_SPECIAL_CHARS);
+
    	$mysqli = new mysqli("$host", "$user", "$pass", "$database");
 
 	//$fråga = "test";
@@ -47,11 +50,11 @@ if(!empty($split_text)){
 	    exit();
 	}
 
-    if (!($stmt = $mysqli->prepare("INSERT into questions(fraga, typ) values (?,?)"))) {
+    if (!($stmt = $mysqli->prepare("INSERT into questions(fraga, typ, userid) values (?,?,?)"))) {
 		echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 	}
 
-	if (!$stmt->bind_param("ss", $filtered, $typ)) {
+	if (!$stmt->bind_param("sss", $filtered, $typ, $userId)) {
 		echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 	}
 

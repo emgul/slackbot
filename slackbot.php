@@ -1,6 +1,5 @@
 <?php
 
-
 require '../../logins.php';
 
 $cmText = filter_input(INPUT_POST, "text", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -33,9 +32,9 @@ if(isset($cmText)){
             require 'class/svar.php';
             break;
 
-		case 'clear':
-			echo json_encode("The clear command is under construction", JSON_UNESCAPED_UNICODE);
-			break;
+		case 'remove':
+            require 'class/remove.php';
+            break;
             
 		
 		default:
