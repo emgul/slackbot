@@ -6,8 +6,6 @@ if(!empty($split_text) && isset($_POST["user_id"])){
 
    	$mysqli = new mysqli("$host", "$user", "$pass", "$database");
 
-	//$fråga = "test";
-
 	$typ = "all";
 	$typText = " as type all";
 

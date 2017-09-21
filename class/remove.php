@@ -8,11 +8,7 @@ if(isset($splits[1])){
 	$split_id = trim($split_id);
 }
 
-//if ($userId == "TestId") {
 if (isset($userId) && !empty($split_id)) {
-	/*echo "Allowed!";
-	echo "	";
-	echo "User: ";*/
 
 	$id = $split_id;
 
@@ -24,23 +20,17 @@ if (isset($userId) && !empty($split_id)) {
 	}
 
 	$sql = "SELECT * FROM questions WHERE id= $id";
-	//$sql1 = "SELECT * FROM questions WHERE id= $id";
 	$sql1 = "DELETE FROM questions WHERE id= $id";
 
 	$result = $mysqli->query($sql);
 	if(mysqli_num_rows($result) > 0)
 	{
 
-		//echo $row["fraga"];
-
 	    while ($row = $result->fetch_assoc()) {
-	        //echo $row["userid"];
 	        $qUserId = $row["userid"];
-	        //echo $qUserId;
 	    }
 
 	    if ($qUserId == $userId) {
-	    	//echo "Removed question with id: " . $id;
 	    	$mysqli->query($sql1);
 	    	http_response_code(200);
    			echo json_encode("Removed question with id: " . $id, JSON_UNESCAPED_UNICODE);
@@ -51,7 +41,6 @@ if (isset($userId) && !empty($split_id)) {
 	    }
 	}
 	else{
-	    //echo "No question with that id";
 	    http_response_code(200);
    		echo json_encode("No question with id: " . $id, JSON_UNESCAPED_UNICODE);
 	}

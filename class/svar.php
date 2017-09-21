@@ -1,7 +1,5 @@
 <?php
 
-
-
 $split_comand = trim($split_comand);
 
 $split_answer = $splits[1];
@@ -54,12 +52,11 @@ if(in_array($split_id , $ids_array)){
 }
 elseif($split_id == NULL) {
     http_response_code(200);
-   	echo json_encode("Du skrev inte in ett id skriv kommandot på detta viset /q answer :: [svar] :: [id]", JSON_UNESCAPED_UNICODE);
+   	echo json_encode("You didn't specify an id. Type the command like this: /q answer :: [answer] :: [id]", JSON_UNESCAPED_UNICODE);
 }
 else{
     http_response_code(200);
-   	echo json_encode("Id: " . $split_id . " existerar inte", JSON_UNESCAPED_UNICODE);
-}
-    
+   	echo json_encode("Id: " . $split_id . " does not exist", JSON_UNESCAPED_UNICODE);
+}  
     
 ?>
